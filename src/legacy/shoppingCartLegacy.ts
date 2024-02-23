@@ -1,10 +1,13 @@
 /* - - - - - - - - - - - - - - - types - - - - - - - - - - - - - - - */
-type CardItem = { name: string, price: number };
+type CardItem = {
+  name: string;
+  price: number;
+}
 
 type OrderStatus = 'open' | 'closed';
 
 /* - - - - - - - - - - - - - - - classes - - - - - - - - - - - - - - - */
-export class ShoppingCart {
+export class ShoppingCartLegacy {
   private readonly _items: CardItem[] = [];
   private _orderStatus: OrderStatus = 'open';
 
@@ -60,8 +63,8 @@ export class ShoppingCart {
 }
 
 /* - - - - - - - - - - - - - - - functions - - - - - - - - - - - - - - - */
-export function instanceateShoppingCart(): ShoppingCart {
-  return new ShoppingCart();
+export function instanceateShoppingCart(): ShoppingCartLegacy {
+  return new ShoppingCartLegacy();
 }
 
 export function runMain(): void {
