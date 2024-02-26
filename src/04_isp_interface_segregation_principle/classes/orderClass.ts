@@ -3,6 +3,7 @@ import { ShoppingCart } from "./shoppingCartClass";
 import { OrderStatusType } from "../types/orderStatusType";
 import { Messaging } from "../services/messagingService";
 import { Persistency } from "../services/persintencyService";
+import { CustomerOrder } from "../interfaces/CustomerProtocol";
 
 /* - - - - - - - - - - - - - - - class - - - - - - - - - - - - - - - */
 export class Order {
@@ -10,11 +11,13 @@ export class Order {
   private readonly cart: ShoppingCart;
   private readonly messaging: Messaging;
   private readonly persistency: Persistency;
+  private readonly customer: CustomerOrder;
 
-  constructor(cart: ShoppingCart, messaging: Messaging, persistency: Persistency) {
+  constructor(cart: ShoppingCart, messaging: Messaging, persistency: Persistency, customer: CustomerOrder) {
     this.cart = cart;
     this.messaging = messaging;
     this.persistency = persistency;
+    this.customer = customer;
   }
 
   public get orderStatus(): OrderStatusType {
@@ -30,5 +33,6 @@ export class Order {
     this.messaging.sendMessage(`Seu pedido com total de R$${this.cart.totalItemsWithDiscount()} foi recebido!`);
     this.persistency.saveOrder();
     this.cart.clear();
+    console.log('O cliente é:', this.customer.getName(), this.customer.getIDN());
   }
 }

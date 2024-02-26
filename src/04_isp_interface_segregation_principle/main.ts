@@ -5,14 +5,22 @@ import { Persistency } from "./services/persintencyService";
 import { Product } from "./classes/productClass";
 import { ShoppingCart } from "./classes/shoppingCartClass";
 import { NoDiscount } from './classes/discountClasses';
+import { EntrepriseCustomer } from "./classes/customerClasses";
 
 /* - - - - - - - - - - - - - - - main - - - - - - - - - - - - - - - */
 (function main() {
   const noDiscount = new NoDiscount();
+
   const shoppingCart = new ShoppingCart(noDiscount);
+
   const messaging = new Messaging();
+
   const persistency = new Persistency();
-  const order = new Order(shoppingCart, messaging, persistency);
+
+  const enterpriseCustomer = new EntrepriseCustomer('pcDeveloper', '00.000.000/0000-00');
+
+  const order = new Order(shoppingCart, messaging, persistency, enterpriseCustomer);
+
   const shirtProduct = new Product('Camisa', 49.91);
   const notebookProduct = new Product('Caderno', 9.9123);
   const pencilProduct = new Product('Lápis', 1.59);
