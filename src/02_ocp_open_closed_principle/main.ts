@@ -4,14 +4,12 @@ import { Order } from "./classes/orderClass";
 import { Persistency } from "./services/persintencyService";
 import { Product } from "./classes/productClass";
 import { ShoppingCart } from "./classes/shoppingCartClass";
-import { NoDiscount } from './classes/discountClasses';
+import { FiftyPercentDiscount } from './classes/discountClasses';
 
 /* - - - - - - - - - - - - - - - main - - - - - - - - - - - - - - - */
 (function main() {
-  // const fiftyPercentDiscount = new FiftyPercentDiscount();
-  // const tenPercentDiscount = new TenPercentDiscount();
-  const noDiscount = new NoDiscount();
-  const shoppingCart = new ShoppingCart(noDiscount);
+  const fiftyPercentDiscount = new FiftyPercentDiscount();
+  const shoppingCart = new ShoppingCart(fiftyPercentDiscount);
   const messaging = new Messaging();
   const persistency = new Persistency();
   const order = new Order(shoppingCart, messaging, persistency);
